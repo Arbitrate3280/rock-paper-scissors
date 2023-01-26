@@ -29,8 +29,23 @@ function playRound(playerSelection, computerSelection) {
 // Cada rodada deverá ser contabilizada
 // Ao finalizar a 5 rodada aparecerá uma mensagem declarando o vencedor e mostrando o placar.
 function game() {
+    let playerScore = 0;
+    let computerScore = 0; 
     for (let i = 0; i < 5; i++) {
         const playerSelection = prompt("Pedra, Papel ou Tesoura?")
         const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+        if (playRound(playerSelection, computerSelection).includes('ganhou')) {
+            playerScore++;
+        } else if (playRound(playerSelection, computerSelection).includes('perdeu')) {
+            computerScore++;
+        }
+        console.log(`Jogador: ${playerScore} x Computador: ${computerScore}`)
     }
+    let result = (playerScore > computerScore) ? 
+        'Resultado: Parabéns! Você venceu o computador!' : 
+        (playerScore < computerScore) ? 'Resultado: Que pena! Você perdeu do computador!' : 'Resultado: Você empatou com o computador.'
+    console.log(result);
 }
+
+game();
